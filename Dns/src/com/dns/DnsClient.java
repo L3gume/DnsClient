@@ -1,6 +1,13 @@
 package com.dns;
 
 import java.net.*;
+import java.util.ArrayList;
+
+enum QueryType {
+    QUERY_A,
+    QUERY_NS,
+    QUERY_MX
+}
 
 public class DnsClient {
     private int timeout;
@@ -8,11 +15,13 @@ public class DnsClient {
     private int port;
     private DatagramSocket socket;
     private InetAddress serverAddress;
+    private QueryType type;
+    private short ID;
 
     byte[] sendData = new byte[1024];
     byte[] receiveData = new byte[1024];
 
-    public DnsClient(String serverAdress, int timeout, int maxRetries, int port) {
+    public DnsClient(String serverAdress, int timeout, int maxRetries, int port, QueryType type) {
         try {
             this.serverAddress = InetAddress.getByName(serverAdress);
         }
@@ -31,6 +40,8 @@ public class DnsClient {
         catch (Exception e) {
             e.printStackTrace();
         }
+
+        this.type = type;
     }
 
     public InetAddress performDnsRequest(String domainName) {

@@ -1,11 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="769cf0eb-bbab-40f1-a182-5f213bc58086" name="Default Changelist" comment="" />
+    <list default="true" id="769cf0eb-bbab-40f1-a182-5f213bc58086" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/Dns/src/com/dns/DnsQuery.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Dns/src/com/dns/DnsClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/Dns/src/com/dns/DnsClient.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FavoritesManager">
+    <favorites_list name="DnsClient" />
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -22,6 +29,9 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/Dns" />
+    <property name="project.structure.last.edited" value="Project" />
+    <property name="project.structure.proportion" value="0.0" />
+    <property name="project.structure.side.proportion" value="0.0" />
   </component>
   <component name="RunManager">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true">
@@ -59,6 +69,7 @@
       <updated>1580239559946</updated>
       <workItem from="1580239564744" duration="1000" />
       <workItem from="1580239646832" duration="200000" />
+      <workItem from="1581345013010" duration="489000" />
     </task>
     <servers />
   </component>
@@ -66,9 +77,22 @@
     <option name="version" value="1" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="743" y="319" width="426" height="485" key="FileChooserDialogImpl" timestamp="1580239846658">
-      <screen x="0" y="42" width="1920" height="1038" />
+    <state x="2090" y="213" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1581345500880">
+      <screen x="1920" y="0" width="1920" height="1050" />
     </state>
+    <state x="2090" y="213" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1920.1050/1920.0.1920.1050@0.0.1920.1050" timestamp="1581345500880" />
+    <state x="2365" y="342" key="#com.intellij.ide.util.TreeClassChooserDialog" timestamp="1581345500243">
+      <screen x="1920" y="0" width="1920" height="1050" />
+    </state>
+    <state x="2365" y="342" key="#com.intellij.ide.util.TreeClassChooserDialog/0.0.1920.1050/1920.0.1920.1050@0.0.1920.1050" timestamp="1581345500243" />
+    <state x="743" y="280" width="426" height="485" key="FileChooserDialogImpl" timestamp="1581345505866">
+      <screen x="0" y="0" width="1920" height="1050" />
+    </state>
+    <state x="743" y="280" key="FileChooserDialogImpl/0.0.1920.1050/1920.0.1920.1050@0.0.1920.1050" timestamp="1581345505866" />
     <state x="743" y="319" width="426" height="485" key="FileChooserDialogImpl/0.42.1920.1038@0.42.1920.1038" timestamp="1580239846658" />
+    <state x="440" y="100" key="SettingsEditor" timestamp="1581345042986">
+      <screen x="0" y="0" width="1920" height="1050" />
+    </state>
+    <state x="440" y="100" key="SettingsEditor/0.0.1920.1050/1920.0.1920.1050@0.0.1920.1050" timestamp="1581345042986" />
   </component>
 </project>
