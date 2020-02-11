@@ -61,7 +61,8 @@ public class Main {
             // TODO: parse and send info to client
             var server = parsed.getString("@server")
                     .replace("[", "")
-                    .replace("]", "");
+                    .replace("]", "")
+                    .replace("@", "");
             var timeout = parsed.getInt("timeout");
             var retries = parsed.getInt("max_retries");
             var port = parsed.getInt("port");

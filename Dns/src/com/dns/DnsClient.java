@@ -2,12 +2,15 @@ package com.dns;
 
 import javax.xml.crypto.Data;
 import java.net.*;
+import java.nio.ByteBuffer;
 import java.util.ArrayList;
+import java.util.Random;
 
 enum QueryType {
     QUERY_A,
     QUERY_NS,
-    QUERY_MX
+    QUERY_MX,
+    QUERY_CNAME
 }
 
 public class DnsClient {
@@ -24,7 +27,13 @@ public class DnsClient {
 
     public DnsClient(String serverAdress, int timeout, int maxRetries, int port, QueryType type) {
         try {
-            this.serverAddress = InetAddress.getByName(serverAdress);
+            // big hardcoded 4, ArrayList is just too annoying to use
+            var ipBytes = new byte[4];
+            var splitAddr = serverAdress.split("\\.");
+            for (var i = 0; i < 4; ++i) {
+                ipBytes[i] = ((byte)Integer.parseInt(splitAddr[i]));
+            }
+            this.serverAddress = InetAddress.getByAddress(ipBytes);
         }
         catch (Exception e){
             // TODO: actually handle error
@@ -46,6 +55,7 @@ public class DnsClient {
     }
 
     public InetAddress performDnsRequest(String domainName) {
+        var rand = new Random();
         initSocket();
 
         try {
@@ -54,10 +64,10 @@ public class DnsClient {
             System.err.println("Failed to connect to server: " + e.getMessage());
             return null;
         }
-
+        this.ID = (short)rand.nextInt(65536);
         var query = new DnsMessage(domainName, type);
-        var data = query.buildQuestion((short)0); // TODO: make a random 16-bit ID
-        var sendPacket = new DatagramPacket(data, data.length);
+        var data = query.buildQuestion(this.ID);
+        var sendPacket = new DatagramPacket(data.array(), data.array().length);
         var receivePacket = new DatagramPacket(receiveData, receiveData.length);
 
         var attemptCtr = 0;
@@ -82,6 +92,9 @@ public class DnsClient {
         }
         if (success) {
             // TODO: read data
+            var responseData = ByteBuffer.allocate(1024);
+            responseData.put(receiveData);
+            var response = new DnsMessage(responseData);
         }
         closeSocket();
         return serverAddress;
@@ -90,7 +103,7 @@ public class DnsClient {
     private void initSocket() {
         try {
             socket = new DatagramSocket(); // just to make sure
-            socket.setSoTimeout(timeout);
+            socket.setSoTimeout(timeout * 1000);
         } catch (SocketException e) {
             System.err.println("Failed to initialize the socket: " + e.getMessage());
             System.exit(1);
