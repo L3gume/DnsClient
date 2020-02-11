@@ -5,25 +5,16 @@ import java.util.ArrayList;
 
 // TODO: build ways to extract info from data when the DnsMessage is a response
 public class DnsMessage {
-    private InetAddress serverAddr;
     private String domainName;
     private QueryType type;
     private ArrayList<Byte> data;
 
-    public DnsMessage(String serverAddr, String domainName, QueryType type) {
+    public DnsMessage(String domainName, QueryType type) {
         // domain name is too long, everything is going to break, exit now
         if (domainName.getBytes().length > 63) {
             System.err.println(String.format(
                     "Domain name: \"%s\" is longer that the allowed 63 octets (RFC 1034). Exiting...",
                     domainName));
-            System.exit(1);
-        }
-        try {
-            this.serverAddr = InetAddress.getByAddress(serverAddr.getBytes());
-        } catch (UnknownHostException e) {
-            System.err.println(String.format(
-                    "Server address: \"%s\" could not be resolved. Exiting...",
-                    serverAddr));
             System.exit(1);
         }
         this.domainName = domainName;
