@@ -1,0 +1,206 @@
+================ A type queries ===============
+
+[32mTest 1: www.mcgill.ca [A query](B[m
+
+Connecting to: /132.206.85.18 [port 53]
+Sending query to: /132.206.85.18 [port 53] (attempt #1)
+
+------ HEADER ------
+ID: 20b4
+QDCOUNT: 1
+ANCOUNT: 1
+NSCOUNT: 0
+ARCOUNT: 0
+
+------ Response------
+IP - 132.216.177.160 - 1136 - noauth
+
+[32mTest 2: www.facebook.com [A query](B[m
+
+Connecting to: /132.206.85.18 [port 53]
+Sending query to: /132.206.85.18 [port 53] (attempt #1)
+ERROR - Socket timed out while waiting for response: Receive timed out
+Sending query to: /132.206.85.18 [port 53] (attempt #2)
+
+------ HEADER ------
+ID: 526a
+QDCOUNT: 1
+ANCOUNT: 2
+NSCOUNT: 0
+ARCOUNT: 0
+
+------ Response------
+IP - 31.13.80.36 - 30 - noauth
+CNAME - star-mini.c10r.facebook.com - 30 - noauth
+
+[32mTest 3: www.reddit.com [A query](B[m
+
+Connecting to: /132.206.85.18 [port 53]
+Sending query to: /132.206.85.18 [port 53] (attempt #1)
+
+------ HEADER ------
+ID: 4c76
+QDCOUNT: 1
+ANCOUNT: 2
+NSCOUNT: 0
+ARCOUNT: 0
+
+------ Response------
+IP - 151.101.125.140 - 3 - noauth
+CNAME - reddit.map.fastly.net - 3 - noauth
+
+[32mTest 4: www.amazon.ca [A query](B[m
+
+Connecting to: /132.206.85.18 [port 53]
+Sending query to: /132.206.85.18 [port 53] (attempt #1)
+
+------ HEADER ------
+ID: 5f7f
+QDCOUNT: 1
+ANCOUNT: 4
+NSCOUNT: 0
+ARCOUNT: 0
+
+------ Response------
+IP - 23.203.100.40 - 14 - noauth
+CNAME - tp.3a3674792-frontier.amazon.ca - 14 - noauth
+CNAME - www.amazon.ca.edgekey.net - 14 - noauth
+CNAME - e15313.e22.akamaiedge.net - 14 - noauth
+
+[32mTest 5: www.instagram.com [A query](B[m
+
+Connecting to: /132.206.85.18 [port 53]
+Sending query to: /132.206.85.18 [port 53] (attempt #1)
+
+------ HEADER ------
+ID: bf5
+QDCOUNT: 1
+ANCOUNT: 2
+NSCOUNT: 0
+ARCOUNT: 0
+
+------ Response------
+IP - 31.13.80.174 - 37 - noauth
+CNAME - z-p42-instagram.c10r.facebook.com - 37 - noauth
+
+[32mTest 6: www.linkedin.com [A query](B[m
+
+Connecting to: /132.206.85.18 [port 53]
+Sending query to: /132.206.85.18 [port 53] (attempt #1)
+
+------ HEADER ------
+ID: 6412
+QDCOUNT: 1
+ANCOUNT: 4
+NSCOUNT: 0
+ARCOUNT: 0
+
+------ Response------
+IP - 108.174.10.10 - 63622 - noauth
+CNAME - www-src.linkedin.com - 63622 - noauth
+CNAME - 2-01-2c3e-003c.cdx.cedexis.net - 63622 - noauth
+CNAME - any-na.www.linkedin.com - 63622 - noauth
+
+[32mTest 7: www.microsoft.com [A query](B[m
+
+Connecting to: /132.206.85.18 [port 53]
+Sending query to: /132.206.85.18 [port 53] (attempt #1)
+
+------ HEADER ------
+ID: 6358
+QDCOUNT: 1
+ANCOUNT: 4
+NSCOUNT: 0
+ARCOUNT: 0
+
+------ Response------
+IP - 104.124.102.29 - 12 - noauth
+CNAME - www.microsoft.com-c-3.edgekey.net - 12 - noauth
+CNAME - www.microsoft.com-c-3.edgekey.net.globalredir.akadns.net - 12 - noauth
+CNAME - e13678.dspb.akamaiedge.net - 12 - noauth
+
+================ MX type queries ===============
+
+[32mTest 8: mail.mcgill.ca [MX query](B[m
+
+Connecting to: /132.206.85.18 [port 53]
+Sending query to: /132.206.85.18 [port 53] (attempt #1)
+
+------ HEADER ------
+ID: c752
+QDCOUNT: 1
+ANCOUNT: 1
+NSCOUNT: 0
+ARCOUNT: 2
+
+------ Response------
+MX - mail-mcgill-ca.mail.protection.outlook.com - 10 - 185 - noauth
+
+[32mTest 9: gmail.com [MX query](B[m
+
+Connecting to: /132.206.85.18 [port 53]
+Sending query to: /132.206.85.18 [port 53] (attempt #1)
+ERROR - Socket timed out while waiting for response: Receive timed out
+Sending query to: /132.206.85.18 [port 53] (attempt #2)
+ERROR - Socket timed out while waiting for response: Receive timed out
+Sending query to: /132.206.85.18 [port 53] (attempt #3)
+ERROR - Socket timed out while waiting for response: Receive timed out
+Sending query to: /132.206.85.18 [port 53] (attempt #4)
+ERROR - Socket timed out while waiting for response: Receive timed out
+Sending query to: /132.206.85.18 [port 53] (attempt #5)
+ERROR - Socket timed out while waiting for response: Receive timed out
+Sending query to: /132.206.85.18 [port 53] (attempt #6)
+ERROR - Server failure: internal problem in the server made it unable to process the query.
+
+[32mTest 10: hotmail.com [MX query](B[m
+
+Connecting to: /132.206.85.18 [port 53]
+Sending query to: /132.206.85.18 [port 53] (attempt #1)
+ERROR - Socket timed out while waiting for response: Receive timed out
+Sending query to: /132.206.85.18 [port 53] (attempt #2)
+ERROR - Socket timed out while waiting for response: Receive timed out
+Sending query to: /132.206.85.18 [port 53] (attempt #3)
+ERROR - Socket timed out while waiting for response: Receive timed out
+Sending query to: /132.206.85.18 [port 53] (attempt #4)
+ERROR - Socket timed out while waiting for response: Receive timed out
+Sending query to: /132.206.85.18 [port 53] (attempt #5)
+ERROR - Socket timed out while waiting for response: Receive timed out
+Sending query to: /132.206.85.18 [port 53] (attempt #6)
+ERROR - Server failure: internal problem in the server made it unable to process the query.
+
+================ NS type queries ===============
+
+[32mTest 11: mcgill.ca [NS query](B[m
+
+Connecting to: /132.206.85.18 [port 53]
+Sending query to: /132.206.85.18 [port 53] (attempt #1)
+
+------ HEADER ------
+ID: d8a2
+QDCOUNT: 1
+ANCOUNT: 3
+NSCOUNT: 0
+ARCOUNT: 3
+
+------ Response------
+NS - pirns2.mcgill.ca - 558 - noauth
+NS - pirns3.mcgill.ca - 558 - noauth
+NS - pirns1.mcgill.ca - 558 - noauth
+
+[32mTest 12: google.ca [NS query](B[m
+
+Connecting to: /132.206.85.18 [port 53]
+Sending query to: /132.206.85.18 [port 53] (attempt #1)
+
+------ HEADER ------
+ID: 16e
+QDCOUNT: 1
+ANCOUNT: 4
+NSCOUNT: 0
+ARCOUNT: 8
+
+------ Response------
+NS - ns1.google.com - 63716 - noauth
+NS - ns3.google.com - 63716 - noauth
+NS - ns4.google.com - 63716 - noauth
+NS - ns2.google.com - 63716 - noauth

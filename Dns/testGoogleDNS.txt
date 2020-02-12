@@ -1,0 +1,206 @@
+================ A type queries ===============
+
+[32mTest 1: www.mcgill.ca [A query](B[m
+
+Connecting to: /8.8.8.8 [port 53]
+Sending query to: /8.8.8.8 [port 53] (attempt #1)
+
+------ HEADER ------
+ID: 6bff
+QDCOUNT: 1
+ANCOUNT: 1
+NSCOUNT: 0
+ARCOUNT: 0
+
+------ Response------
+IP - 132.216.177.160 - 1047 - noauth
+
+[32mTest 2: www.facebook.com [A query](B[m
+
+Connecting to: /8.8.8.8 [port 53]
+Sending query to: /8.8.8.8 [port 53] (attempt #1)
+
+------ HEADER ------
+ID: 7dad
+QDCOUNT: 1
+ANCOUNT: 2
+NSCOUNT: 0
+ARCOUNT: 0
+
+------ Response------
+IP - 31.13.80.36 - 59 - noauth
+CNAME - star-mini.c10r.facebook.com - 59 - noauth
+
+[32mTest 3: www.reddit.com [A query](B[m
+
+Connecting to: /8.8.8.8 [port 53]
+Sending query to: /8.8.8.8 [port 53] (attempt #1)
+
+------ HEADER ------
+ID: 3b2
+QDCOUNT: 1
+ANCOUNT: 5
+NSCOUNT: 0
+ARCOUNT: 0
+
+------ Response------
+IP - 151.101.1.140 - 29 - noauth
+IP - 151.101.65.140 - 29 - noauth
+IP - 151.101.129.140 - 29 - noauth
+IP - 151.101.193.140 - 29 - noauth
+CNAME - reddit.map.fastly.net - 29 - noauth
+
+[32mTest 4: www.amazon.ca [A query](B[m
+
+Connecting to: /8.8.8.8 [port 53]
+Sending query to: /8.8.8.8 [port 53] (attempt #1)
+
+------ HEADER ------
+ID: 2215
+QDCOUNT: 1
+ANCOUNT: 4
+NSCOUNT: 0
+ARCOUNT: 0
+
+------ Response------
+IP - 23.203.100.40 - 19 - noauth
+CNAME - tp.3a3674792-frontier.amazon.ca - 19 - noauth
+CNAME - www.amazon.ca.edgekey.net - 19 - noauth
+CNAME - e15313.e22.akamaiedge.net - 19 - noauth
+
+[32mTest 5: www.instagram.com [A query](B[m
+
+Connecting to: /8.8.8.8 [port 53]
+Sending query to: /8.8.8.8 [port 53] (attempt #1)
+
+------ HEADER ------
+ID: 3bff
+QDCOUNT: 1
+ANCOUNT: 2
+NSCOUNT: 0
+ARCOUNT: 0
+
+------ Response------
+IP - 31.13.80.174 - 59 - noauth
+CNAME - z-p42-instagram.c10r.facebook.com - 59 - noauth
+
+[32mTest 6: www.linkedin.com [A query](B[m
+
+Connecting to: /8.8.8.8 [port 53]
+Sending query to: /8.8.8.8 [port 53] (attempt #1)
+
+------ HEADER ------
+ID: 43e8
+QDCOUNT: 1
+ANCOUNT: 4
+NSCOUNT: 0
+ARCOUNT: 0
+
+------ Response------
+IP - 108.174.10.10 - 13186 - noauth
+CNAME - www-src.linkedin.com - 13186 - noauth
+CNAME - 2-01-2c3e-003c.cdx.cedexis.net - 13186 - noauth
+CNAME - any-na.www.linkedin.com - 13186 - noauth
+
+[32mTest 7: www.microsoft.com [A query](B[m
+
+Connecting to: /8.8.8.8 [port 53]
+Sending query to: /8.8.8.8 [port 53] (attempt #1)
+
+------ HEADER ------
+ID: 5e31
+QDCOUNT: 1
+ANCOUNT: 4
+NSCOUNT: 0
+ARCOUNT: 0
+
+------ Response------
+IP - 72.247.170.32 - 19 - noauth
+CNAME - www.microsoft.com-c-3.edgekey.net - 19 - noauth
+CNAME - www.microsoft.com-c-3.edgekey.net.globalredir.akadns.net - 19 - noauth
+CNAME - e13678.dspb.akamaiedge.net - 19 - noauth
+================ MX type queries ===============
+
+[32mTest 8: mail.mcgill.ca [MX query](B[m
+
+Connecting to: /8.8.8.8 [port 53]
+Sending query to: /8.8.8.8 [port 53] (attempt #1)
+
+------ HEADER ------
+ID: 331
+QDCOUNT: 1
+ANCOUNT: 1
+NSCOUNT: 0
+ARCOUNT: 0
+
+------ Response------
+MX - mail-mcgill-ca.mail.protection.outlook.com - 10 - 208 - noauth
+
+[32mTest 9: gmail.com [MX query](B[m
+
+Connecting to: /8.8.8.8 [port 53]
+Sending query to: /8.8.8.8 [port 53] (attempt #1)
+
+------ HEADER ------
+ID: d0fc
+QDCOUNT: 1
+ANCOUNT: 5
+NSCOUNT: 0
+ARCOUNT: 0
+
+------ Response------
+MX - alt2.gmail-smtp-in.l.google.com - 20 - 3518 - noauth
+MX - alt4.gmail-smtp-in.l.google.com - 40 - 3518 - noauth
+MX - alt1.gmail-smtp-in.l.google.com - 10 - 3518 - noauth
+MX - gmail-smtp-in.l.google.com - 5 - 3518 - noauth
+MX - alt3.gmail-smtp-in.l.google.com - 30 - 3518 - noauth
+
+[32mTest 10: hotmail.com [MX query](B[m
+
+Connecting to: /8.8.8.8 [port 53]
+Sending query to: /8.8.8.8 [port 53] (attempt #1)
+
+------ HEADER ------
+ID: 4254
+QDCOUNT: 1
+ANCOUNT: 1
+NSCOUNT: 0
+ARCOUNT: 0
+
+------ Response------
+MX - hotmail-com.olc.protection.outlook.com - 2 - 484 - noauth
+================ NS type queries ===============
+
+[32mTest 11: mcgill.ca [NS query](B[m
+
+Connecting to: /8.8.8.8 [port 53]
+Sending query to: /8.8.8.8 [port 53] (attempt #1)
+
+------ HEADER ------
+ID: 9f3b
+QDCOUNT: 1
+ANCOUNT: 2
+NSCOUNT: 0
+ARCOUNT: 0
+
+------ Response------
+NS - pens2.mcgill.ca - 1556 - noauth
+NS - pens1.mcgill.ca - 1556 - noauth
+
+[32mTest 12: google.ca [NS query](B[m
+
+Connecting to: /8.8.8.8 [port 53]
+Sending query to: /8.8.8.8 [port 53] (attempt #1)
+
+------ HEADER ------
+ID: b103
+QDCOUNT: 1
+ANCOUNT: 4
+NSCOUNT: 0
+ARCOUNT: 0
+
+------ Response------
+NS - ns3.google.com - 13485 - noauth
+NS - ns2.google.com - 13485 - noauth
+NS - ns4.google.com - 13485 - noauth
+NS - ns1.google.com - 13485 - noauth

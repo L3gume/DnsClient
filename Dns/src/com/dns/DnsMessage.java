@@ -21,18 +21,16 @@ public class DnsMessage {
     private boolean ansRecSupport;
     private byte ansRCode;
     // Answer body
-    private ArrayList<String> ansName; // There could be more than 1
-    private ArrayList<String> ansRData; // There could be more than 1
-    private String ansIPAddr;
-    private String ansNameServer;
-    private String ansAlias;
-    private String ansDomain;
+    private ArrayList<String> ansIPAddr;
+    private ArrayList<String> ansNameServer;
+    private ArrayList<String> ansAlias;
+    private ArrayList<String> ansDomain;
+    private ArrayList<String> ansExchange;
+    private ArrayList<Integer> ansPreference;
     private QueryType ansType;
     private short ansClass;
     private int ansTTL;
     private short ansRDLength;
-    private int ansPreference;
-    private String ansExchange;
 
     public DnsMessage(String domainName, QueryType type) {
         // domain name is too long, everything is going to break, exit now
@@ -42,6 +40,12 @@ public class DnsMessage {
                     domainName));
             System.exit(127);
         }
+        ansIPAddr = new ArrayList<>();
+        ansNameServer = new ArrayList<>();
+        ansAlias = new ArrayList<>();
+        ansDomain = new ArrayList<>();
+        ansExchange = new ArrayList<>();
+        ansPreference = new ArrayList<>();
         this.domainName = domainName;
         this.type = type;
         this.isQuestion = true;
@@ -50,11 +54,20 @@ public class DnsMessage {
     public DnsMessage(ByteBuffer data, short senderID, int senderQueryLen) {
         this.isQuestion = false;
         this.senderID = senderID;
+
+        ansIPAddr = new ArrayList<>();
+        ansNameServer = new ArrayList<>();
+        ansAlias = new ArrayList<>();
+        ansDomain = new ArrayList<>();
+        ansExchange = new ArrayList<>();
+        ansPreference = new ArrayList<>();
+
         // TODO: populate other fields and make util functions to fetch info
         parseHeader(data);
         System.out.println(getHeaderString());
-        //data.position(data.position() + senderQueryLen);
-        //parseBody(data);
+        // We need to ignore the query part
+        data.position(data.position() + senderQueryLen);
+        parseBody(data);
     }
 
     /**
@@ -86,7 +99,7 @@ public class DnsMessage {
 
     public String getHeaderString() {
         return String.format(
-                "------ HEADER ------\nID: %d\nQDCOUNT: %d\nANCOUNT: %d\nNSCOUNT: %d\nARCOUNT: %d\n",
+                "\n------ HEADER ------\nID: %x\nQDCOUNT: %d\nANCOUNT: %d\nNSCOUNT: %d\nARCOUNT: %d\n",
                 ansID,
                 ansQDCount,
                 ansANCount,
@@ -100,17 +113,20 @@ public class DnsMessage {
             return "";
         }
         var auth = ansAuthority ? "auth" : "noauth";
-        switch (ansType) {
-            case QUERY_A:
-                return String.format("IP - %s - %d - %s", ansIPAddr, ansTTL, auth);
-            case QUERY_NS:
-                return String.format("NS - %s - %d - %s", ansNameServer, ansTTL, auth);
-            case QUERY_CNAME:
-                return String.format("CNAME - %s - %d - %s", ansAlias, ansTTL, auth);
-            case QUERY_MX:
-                return String.format("MX - %s - %d - %d - %s", ansExchange, ansPreference, ansTTL, auth);
+        var strBuild = new StringBuilder();
+        for (var ip : ansIPAddr) {
+            strBuild.append(String.format("IP - %s - %d - %s\n", ip, ansTTL, auth));
         }
-        return "Invalid Query Type";
+        for (var ns : ansNameServer) {
+            strBuild.append(String.format("NS - %s - %d - %s\n", ns, ansTTL, auth));
+        }
+        for (var al : ansAlias) {
+            strBuild.append(String.format("CNAME - %s - %d - %s\n", al, ansTTL, auth));
+        }
+        for (var i = 0; i < ansExchange.size(); ++i) {
+            strBuild.append(String.format("MX - %s - %d - %d - %s\n", ansExchange.get(i), ansPreference.get(i), ansTTL, auth));
+        }
+        return strBuild.toString();
     }
 
     /**
@@ -137,7 +153,7 @@ public class DnsMessage {
         data.putShort((short)0x0000);
         // ARCOUNT, ????
         data.putShort((short)0x0000);
-        return 12;
+        return 0;
     }
 
     private void parseHeader(ByteBuffer data) {
@@ -211,20 +227,31 @@ public class DnsMessage {
     }
 
     private void parseBody(ByteBuffer data) {
-        ansDomain = parseLabels(data);
-        ansType = parseResponseType(data);
-        ansClass = data.getShort();
-        if (ansClass != 1) {
-            System.err.format("ERROR - Unexpected response class: %d. Should be internet address (1).", ansClass);
-            System.exit(127);
-        }
-        ansTTL = data.getInt();
-        ansRDLength = data.getShort();
-        switch (ansType) {
-            case QUERY_A: parseIP(data); break;
-            case QUERY_NS: parseNameServer(data); break;
-            case QUERY_MX: parseMailServer(data); break;
-            case QUERY_CNAME: parseAlias(data); break;
+        // TODO: handle multiple responses
+        for (var i = 0; i < ansANCount; ++i) {
+            ansDomain.add(parseLabels(data));
+            ansType = parseResponseType(data);
+            ansClass = data.getShort();
+            if (ansClass != 1) {
+                System.err.format("ERROR - Unexpected response class: %d. Should be internet address (1).", ansClass);
+                System.exit(127);
+            }
+            ansTTL = data.getInt();
+            ansRDLength = data.getShort();
+            switch (ansType) {
+                case QUERY_A:
+                    parseIP(data);
+                    break;
+                case QUERY_NS:
+                    parseNameServer(data);
+                    break;
+                case QUERY_MX:
+                    parseMailServer(data);
+                    break;
+                case QUERY_CNAME:
+                    parseAlias(data);
+                    break;
+            }
         }
     }
 
@@ -249,7 +276,8 @@ public class DnsMessage {
             if ((labelLen & 0b11000000) == 0b11000000) {
                 // this is a pointer, back up and get short instead
                 data.position(data.position() - 1);
-                var ptr = data.getShort() & 0b0011111111111111; // ignore 2 uppermost bits
+                var thing = data.getShort();
+                var ptr =  thing & 0x3FFF; // ignore 2 uppermost bits
                 var pos = data.position(); // keep position for after we're done
                 data.position(ptr); // jump to offset
                 strBuild.append(parseLabels(data)); // parse
@@ -279,28 +307,28 @@ public class DnsMessage {
         assert ansRDLength == 4;
         var strBuild = new StringBuilder();
         for (var i = 0; i < 3; ++i) {
-            strBuild.append(data.get()).append('.');
+            strBuild.append(data.get() & 0xFF).append('.');
         }
-        strBuild.append(data.get());
-        ansIPAddr = strBuild.toString();
+        strBuild.append(data.get() & 0xFF);
+        ansIPAddr.add(strBuild.toString());
     }
 
     private void parseNameServer(ByteBuffer data) {
-        ansNameServer = parseLabels(data);
+        ansNameServer.add(parseLabels(data));
     }
 
     private void parseAlias(ByteBuffer data) {
-        ansAlias = parseLabels(data);
+        ansAlias.add(parseLabels(data));
     }
 
     private void parseMailServer(ByteBuffer data) {
-        ansPreference = data.getShort();
-        ansExchange = parseLabels(data);
+        ansPreference.add((int)data.getShort());
+        ansExchange.add(parseLabels(data));
     }
 
     private int parseDomainName(ByteBuffer data) {
         var len = 0;
-        var split = domainName.split(".");
+        var split = domainName.split("\\.");
         for (var label : split) {
             data.put((byte)label.length());
             len++; // size of label: 1 byte

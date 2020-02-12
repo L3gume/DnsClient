@@ -67,8 +67,11 @@ public class Main {
             var retries = parsed.getInt("max_retries");
             var port = parsed.getInt("port");
             var client = new DnsClient(server, timeout, retries, port, type);
-            var response = client.performDnsRequest("google.ca");
-            System.out.println(response.getResponseString());
+            var name = parsed.getString("name")
+                    .replace("[", "")
+                    .replace("]", "");
+            var response = client.performDnsRequest(name);
+            System.out.format("------ Response------\n%s", response.getResponseString());
         } catch (ArgumentParserException e) {
             parser.handleError(e);
             parser.printHelp();
