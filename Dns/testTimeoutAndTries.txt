@@ -1,0 +1,29 @@
+
+[32mTest 1: request timeout (1s)(B[m
+
+Connecting to: /132.206.85.18 [port 420]
+Sending query to: /132.206.85.18 [port 420] (attempt #1)
+ERROR - Socket timed out while waiting for response: Receive timed out
+ERROR - Failed to contact name server. Exiting...
+
+[32mTest 2: request timeout (10s)(B[m
+
+Connecting to: /132.206.85.18 [port 420]
+Sending query to: /132.206.85.18 [port 420] (attempt #1)
+ERROR - Socket timed out while waiting for response: Receive timed out
+ERROR - Failed to contact name server. Exiting...
+
+[32mTest 3: request timeout (1s) + 5 tries(B[m
+
+Connecting to: /132.206.85.18 [port 420]
+Sending query to: /132.206.85.18 [port 420] (attempt #1)
+ERROR - Socket timed out while waiting for response: Receive timed out
+Sending query to: /132.206.85.18 [port 420] (attempt #2)
+ERROR - Socket timed out while waiting for response: Receive timed out
+Sending query to: /132.206.85.18 [port 420] (attempt #3)
+ERROR - Socket timed out while waiting for response: Receive timed out
+Sending query to: /132.206.85.18 [port 420] (attempt #4)
+ERROR - Socket timed out while waiting for response: Receive timed out
+Sending query to: /132.206.85.18 [port 420] (attempt #5)
+ERROR - Socket timed out while waiting for response: Receive timed out
+ERROR - Failed to contact name server. Exiting...
