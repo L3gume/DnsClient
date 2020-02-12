@@ -56,7 +56,7 @@ public class Main {
                 type = QueryType.QUERY_MX;
             } else if (parsed.getBoolean("ns") && parsed.getBoolean("mx")) {
                 System.err.println("Cannot have both -ns and -mx switches at the same time. Exiting...");
-                System.exit(1);
+                System.exit(127);
             }
             // TODO: parse and send info to client
             var server = parsed.getString("@server")
@@ -68,14 +68,15 @@ public class Main {
             var port = parsed.getInt("port");
             var client = new DnsClient(server, timeout, retries, port, type);
             var response = client.performDnsRequest("google.ca");
+            System.out.println(response.getResponseString());
         } catch (ArgumentParserException e) {
             parser.handleError(e);
             parser.printHelp();
-            System.exit(1);
+            System.exit(127);
 
         } catch (Exception e) {
             e.printStackTrace();
-            System.exit(1);
+            System.exit(127);
         }
 
     }

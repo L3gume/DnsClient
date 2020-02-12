@@ -22,9 +22,6 @@ public class DnsClient {
     private QueryType type;
     private short ID;
 
-    byte[] sendData = new byte[1024];
-    byte[] receiveData = new byte[1024];
-
     public DnsClient(String serverAdress, int timeout, int maxRetries, int port, QueryType type) {
         try {
             // big hardcoded 4, ArrayList is just too annoying to use
@@ -60,16 +57,22 @@ public class DnsClient {
         initSocket();
 
         try {
+            System.out.format("Connecting to: %s [port %d]\n", serverAddress.toString(), port);
             socket.connect(serverAddress, port);
         } catch (Exception e) {
-            System.err.println("Failed to connect to server: " + e.getMessage());
+            System.err.println("ERROR - Failed to connect to server: " + e.getMessage());
             return null;
         }
+
         this.ID = (short)rand.nextInt(65536);
         var query = new DnsMessage(domainName, type);
-        var data = query.buildQuestion(this.ID);
-        var sendPacket = new DatagramPacket(data.array(), data.array().length);
-        var receivePacket = new DatagramPacket(receiveData, receiveData.length);
+
+        var sendData = ByteBuffer.allocate(512);
+        var queryLen = query.buildQuestion(sendData, this.ID);
+        var sendPacket = new DatagramPacket(sendData.array(), sendData.array().length);
+
+        var receiveData = ByteBuffer.allocate(512);
+        var receivePacket = new DatagramPacket(receiveData.array(), receiveData.array().length);
 
         var attemptCtr = 0;
         var success = false;
@@ -78,7 +81,7 @@ public class DnsClient {
             try {
                 socket.send(sendPacket);
             } catch(Exception e){
-                System.err.println("Error while sending packet: " + e.getMessage());
+                System.err.println("ERROR - Error while sending packet: " + e.getMessage());
                 continue;
             }
             // receive packet
@@ -87,17 +90,18 @@ public class DnsClient {
                 success = true;
                 break;
             } catch (SocketTimeoutException e) {
-                System.err.println("Socket timed out while waiting for response: " + e.getMessage());
+                System.err.println("ERROR - Socket timed out while waiting for response: " + e.getMessage());
             } catch (Exception e) {
-                System.err.println("Error while listening to socket: " + e.getMessage());
+                System.err.println("ERROR - Error while listening to socket: " + e.getMessage());
             }
             // no need for a continue
         }
         if (success) {
-            var responseData = ByteBuffer.allocate(1024);
-            responseData.put(receiveData);
             // rebuild into a DnsMessage to access info
-            response = new DnsMessage(responseData);
+            response = new DnsMessage(receiveData, this.ID, queryLen);
+        } else {
+            System.err.println("ERROR - Failed to contact name server. Exiting...");
+            System.exit(127);
         }
         socket.disconnect();
         closeSocket();
@@ -109,8 +113,8 @@ public class DnsClient {
             socket = new DatagramSocket(); // just to make sure
             socket.setSoTimeout(timeout * 1000);
         } catch (SocketException e) {
-            System.err.println("Failed to initialize the socket: " + e.getMessage());
-            System.exit(1);
+            System.err.println("ERROR - Failed to initialize the socket: " + e.getMessage());
+            System.exit(127);
         }
     }
 
