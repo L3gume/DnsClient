@@ -64,7 +64,7 @@ public class DnsClient {
             return null;
         }
 
-        this.ID = (short)rand.nextInt(65536);
+        this.ID = (short)rand.nextInt(65535);
         var query = new DnsMessage(domainName, type);
 
         var sendData = ByteBuffer.allocate(512);
@@ -79,6 +79,7 @@ public class DnsClient {
         while (attemptCtr++ < maxRetries) {
             // send packet
             try {
+                System.out.format("Sending query to: %s [port %d] (attempt #%d)\n", serverAddress.toString(), port, attemptCtr);
                 socket.send(sendPacket);
             } catch(Exception e){
                 System.err.println("ERROR - Error while sending packet: " + e.getMessage());
