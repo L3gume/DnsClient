@@ -54,7 +54,8 @@ public class DnsClient {
         this.type = type;
     }
 
-    public InetAddress performDnsRequest(String domainName) {
+    public DnsMessage performDnsRequest(String domainName) {
+        DnsMessage response = null;
         var rand = new Random();
         initSocket();
 
@@ -84,20 +85,23 @@ public class DnsClient {
             try {
                 socket.receive(receivePacket);
                 success = true;
+                break;
             } catch (SocketTimeoutException e) {
                 System.err.println("Socket timed out while waiting for response: " + e.getMessage());
             } catch (Exception e) {
                 System.err.println("Error while listening to socket: " + e.getMessage());
             }
+            // no need for a continue
         }
         if (success) {
-            // TODO: read data
             var responseData = ByteBuffer.allocate(1024);
             responseData.put(receiveData);
-            var response = new DnsMessage(responseData);
+            // rebuild into a DnsMessage to access info
+            response = new DnsMessage(responseData);
         }
+        socket.disconnect();
         closeSocket();
-        return serverAddress;
+        return response;
     }
 
     private void initSocket() {
@@ -111,7 +115,7 @@ public class DnsClient {
     }
 
     private void closeSocket() {
-        socket.close();
+        socket.close(); // DON'T LEAVE SOCKETS OPEN
         socket = null; // force the garbage collector to dispose of the object
     }
 }
