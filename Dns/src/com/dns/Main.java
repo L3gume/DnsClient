@@ -70,8 +70,7 @@ public class Main {
             var name = parsed.getString("name")
                     .replace("[", "")
                     .replace("]", "");
-            var response = client.performDnsRequest(name);
-            System.out.format("------ Response------\n%s", response.getResponseString());
+            client.performDnsRequest(name);
         } catch (ArgumentParserException e) {
             parser.handleError(e);
             parser.printHelp();

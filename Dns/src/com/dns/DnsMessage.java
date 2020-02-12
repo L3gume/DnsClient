@@ -4,7 +4,7 @@ import java.net.*;
 import java.nio.ByteBuffer;
 import java.util.ArrayList;
 
-// TODO: build ways to extract info from data when the DnsMessage is a response
+// TODO: make DnsMessage properly keep information stored in records
 public class DnsMessage {
     private String domainName;
     private QueryType type;
@@ -21,15 +21,15 @@ public class DnsMessage {
     private boolean ansRecSupport;
     private byte ansRCode;
     // Answer body
-    private ArrayList<String> ansIPAddr;
-    private ArrayList<String> ansNameServer;
-    private ArrayList<String> ansAlias;
-    private ArrayList<String> ansDomain;
-    private ArrayList<String> ansExchange;
-    private ArrayList<Integer> ansPreference;
+    private String ansIPAddr;
+    private String ansNameServer;
+    private String ansAlias;
+    private String ansDomain;
+    private String ansExchange;
+    private int ansPreference;
+    private int ansTTL;
     private QueryType ansType;
     private short ansClass;
-    private int ansTTL;
     private short ansRDLength;
 
     public DnsMessage(String domainName, QueryType type) {
@@ -40,12 +40,6 @@ public class DnsMessage {
                     domainName));
             System.exit(127);
         }
-        ansIPAddr = new ArrayList<>();
-        ansNameServer = new ArrayList<>();
-        ansAlias = new ArrayList<>();
-        ansDomain = new ArrayList<>();
-        ansExchange = new ArrayList<>();
-        ansPreference = new ArrayList<>();
         this.domainName = domainName;
         this.type = type;
         this.isQuestion = true;
@@ -55,16 +49,7 @@ public class DnsMessage {
         this.isQuestion = false;
         this.senderID = senderID;
 
-        ansIPAddr = new ArrayList<>();
-        ansNameServer = new ArrayList<>();
-        ansAlias = new ArrayList<>();
-        ansDomain = new ArrayList<>();
-        ansExchange = new ArrayList<>();
-        ansPreference = new ArrayList<>();
-
-        // TODO: populate other fields and make util functions to fetch info
         parseHeader(data);
-        System.out.println(getHeaderString());
         // We need to ignore the query part
         data.position(data.position() + senderQueryLen);
         parseBody(data);
@@ -79,54 +64,6 @@ public class DnsMessage {
         var len = buildHeader(data, ID);
         len += buildBody(data);
         return len ;
-    }
-
-    /**
-     * checks if the message is a question
-     * @return true if it's a question
-     */
-    public boolean isQuestion() {
-        return isQuestion;
-    }
-
-    /**
-     * checks if the message is a response
-     * @return true if it's a response
-     */
-    public boolean isResponse() {
-        return !isQuestion;
-    }
-
-    public String getHeaderString() {
-        return String.format(
-                "\n------ HEADER ------\nID: %x\nQDCOUNT: %d\nANCOUNT: %d\nNSCOUNT: %d\nARCOUNT: %d\n",
-                ansID,
-                ansQDCount,
-                ansANCount,
-                ansNSCount,
-                ansARCount);
-    }
-
-    public String getResponseString() {
-        if (isQuestion) {
-            System.err.println("ERROR - Cannot output response string: message is a question.");
-            return "";
-        }
-        var auth = ansAuthority ? "auth" : "noauth";
-        var strBuild = new StringBuilder();
-        for (var ip : ansIPAddr) {
-            strBuild.append(String.format("IP - %s - %d - %s\n", ip, ansTTL, auth));
-        }
-        for (var ns : ansNameServer) {
-            strBuild.append(String.format("NS - %s - %d - %s\n", ns, ansTTL, auth));
-        }
-        for (var al : ansAlias) {
-            strBuild.append(String.format("CNAME - %s - %d - %s\n", al, ansTTL, auth));
-        }
-        for (var i = 0; i < ansExchange.size(); ++i) {
-            strBuild.append(String.format("MX - %s - %d - %d - %s\n", ansExchange.get(i), ansPreference.get(i), ansTTL, auth));
-        }
-        return strBuild.toString();
     }
 
     /**
@@ -167,31 +104,30 @@ public class DnsMessage {
         // | RA | Z | RCODE |
         var recSupported = (buf & 0b10000000) == 0b10000000;
         if (!recSupported) {
-            System.err.println("ERROR - The DNS server does not support recursive queries.");
+            System.err.println("ERROR\tThe DNS server does not support recursive queries.");
         }
         ansRCode = (byte)(buf & 0xF); // 4 lower bytes
         var errMsg = "";
         var errCode = 0;
         switch (ansRCode) {
             case 1:
-                errMsg = "ERROR - Format error: name server could not interpret the query due to bad formatting.";
+                errMsg = "ERROR\tFormat error: name server could not interpret the query due to bad formatting.";
                 errCode = 1;
                 break;
             case 2:
-                errMsg = "ERROR - Server failure: internal problem in the server made it unable to process the query.";
+                errMsg = "ERROR\tServer failure: internal problem in the server made it unable to process the query.";
                 errCode = 2;
                 break;
             case 3:
-                errMsg = ansAuthority ? "ERROR - Name error: the queried domain name does not exist."
-                        : "ERROR - Not found: the queried domain could not be found.";
+                errMsg = "NOTFOUND";
                 errCode = 3;
                 break;
             case 4:
-                errMsg = "ERROR - Not implemented: the server does not support this type of query.";
+                errMsg = "ERROR\tNot implemented: the server does not support this type of query.";
                 errCode = 4;
                 break;
             case 5:
-                errMsg = "ERROR - Refused: the name server refused to perform the query.";
+                errMsg = "ERROR\tRefused: the name server refused to perform the query.";
                 errCode = 5;
                 break;
         }
@@ -217,7 +153,7 @@ public class DnsMessage {
             case QUERY_NS: data.putShort((short)0x0002); break;
             case QUERY_MX: data.putShort((short)0x000f); break;
             default:
-                System.err.println("Invalid query type. Exiting...");
+                System.err.println("ERROR\tInvalid query type. Exiting...");
                 System.exit(127);
         }
         // QCLASS, internet address
@@ -227,31 +163,39 @@ public class DnsMessage {
     }
 
     private void parseBody(ByteBuffer data) {
-        // TODO: handle multiple responses
+        System.out.println(String.format("\n***Answer Section (%d records)***\n", ansANCount));
         for (var i = 0; i < ansANCount; ++i) {
-            ansDomain.add(parseLabels(data));
-            ansType = parseResponseType(data);
-            ansClass = data.getShort();
-            if (ansClass != 1) {
-                System.err.format("ERROR - Unexpected response class: %d. Should be internet address (1).", ansClass);
-                System.exit(127);
-            }
-            ansTTL = data.getInt();
-            ansRDLength = data.getShort();
-            switch (ansType) {
-                case QUERY_A:
-                    parseIP(data);
-                    break;
-                case QUERY_NS:
-                    parseNameServer(data);
-                    break;
-                case QUERY_MX:
-                    parseMailServer(data);
-                    break;
-                case QUERY_CNAME:
-                    parseAlias(data);
-                    break;
-            }
+            parseRecord(data);
+        }
+        System.out.println(String.format("\n***Additional Section (%d records)***\n", ansARCount));
+        for (var i = 0; i < ansARCount; ++i) {
+            parseRecord(data);
+        }
+    }
+
+    private void parseRecord(ByteBuffer data) {
+        ansDomain = parseLabels(data);
+        ansType = parseResponseType(data);
+        ansClass = data.getShort();
+        if (ansClass != 1) {
+            System.err.format("ERROR\tUnexpected response class: %d. Should be internet address (1).", ansClass);
+            System.exit(127);
+        }
+        ansTTL = data.getInt();
+        ansRDLength = data.getShort();
+        switch (ansType) {
+            case QUERY_A:
+                parseIP(data);
+                break;
+            case QUERY_NS:
+                parseNameServer(data);
+                break;
+            case QUERY_MX:
+                parseMailServer(data);
+                break;
+            case QUERY_CNAME:
+                parseAlias(data);
+                break;
         }
     }
 
@@ -288,7 +232,7 @@ public class DnsMessage {
                 buf = data.get();
                 if (buf == 0) {
                     System.err.format(
-                            "ERROR - Unexpected null termination while parsing label: %s\n",
+                            "ERROR\tUnexpected null termination while parsing label: %s\n",
                             strBuild.toString());
                 }
                 strBuild.append((char)buf);
@@ -310,20 +254,24 @@ public class DnsMessage {
             strBuild.append(data.get() & 0xFF).append('.');
         }
         strBuild.append(data.get() & 0xFF);
-        ansIPAddr.add(strBuild.toString());
+        ansIPAddr= strBuild.toString();
+        System.out.println(String.format("IP\t%s\t%d\t%s", ansIPAddr, ansTTL, ansAuthority ? "auth" : "noauth"));
     }
 
     private void parseNameServer(ByteBuffer data) {
-        ansNameServer.add(parseLabels(data));
+        ansNameServer = parseLabels(data);
+        System.out.println(String.format("NS\t%s\t%d\t%s", ansNameServer, ansTTL, ansAuthority ? "auth" : "noauth"));
     }
 
     private void parseAlias(ByteBuffer data) {
-        ansAlias.add(parseLabels(data));
-    }
+        ansAlias = parseLabels(data);
+        System.out.println(String.format("CNAME\t%s\t%d\t%s", ansAlias, ansTTL, ansAuthority ? "auth" : "noauth"));
+        }
 
     private void parseMailServer(ByteBuffer data) {
-        ansPreference.add((int)data.getShort());
-        ansExchange.add(parseLabels(data));
+        ansPreference = (int)data.getShort();
+        ansExchange = parseLabels(data);
+        System.out.println(String.format("MX\t%s\t%d\t%d\t%s", ansExchange, ansPreference, ansTTL, ansAuthority ? "auth" : "noauth"));
     }
 
     private int parseDomainName(ByteBuffer data) {

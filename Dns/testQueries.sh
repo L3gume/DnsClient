@@ -64,6 +64,11 @@ echo ""
 java -jar out/artifacts/DnsClient_jar/DnsClient.jar -ns -t 2 -r 10 $1 mcgill.ca 
 
 echo ""
-echo "$(tput setaf 2)Test 12: google.ca [NS query]$(tput sgr0)"
+echo "$(tput setaf 2)Test 12: google.com [NS query]$(tput sgr0)"
 echo ""
-java -jar out/artifacts/DnsClient_jar/DnsClient.jar -ns -t 2 -r 10 $1 google.ca 
+java -jar out/artifacts/DnsClient_jar/DnsClient.jar -ns -t 2 -r 10 $1 google.com 
+
+echo ""
+echo "$(tput setaf 2)Test 13: google.ca [NS query]$(tput sgr0)"
+echo ""
+java -jar out/artifacts/DnsClient_jar/DnsClient.jar -ns -t 2 -r 10 $1 google.ca

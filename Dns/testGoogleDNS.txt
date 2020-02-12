@@ -2,205 +2,199 @@
 
 [32mTest 1: www.mcgill.ca [A query](B[m
 
-Connecting to: /8.8.8.8 [port 53]
-Sending query to: /8.8.8.8 [port 53] (attempt #1)
+DnsClient sending request for www.mcgill.ca
+Server: /8.8.8.8
+Request type: QUERY_A
 
------- HEADER ------
-ID: 6bff
-QDCOUNT: 1
-ANCOUNT: 1
-NSCOUNT: 0
-ARCOUNT: 0
+***Answer Section (1 records)***
 
------- Response------
-IP - 132.216.177.160 - 1047 - noauth
+IP	132.216.177.160	954	noauth
+
+***Additional Section (0 records)***
+
 
 [32mTest 2: www.facebook.com [A query](B[m
 
-Connecting to: /8.8.8.8 [port 53]
-Sending query to: /8.8.8.8 [port 53] (attempt #1)
+DnsClient sending request for www.facebook.com
+Server: /8.8.8.8
+Request type: QUERY_A
 
------- HEADER ------
-ID: 7dad
-QDCOUNT: 1
-ANCOUNT: 2
-NSCOUNT: 0
-ARCOUNT: 0
+***Answer Section (2 records)***
 
------- Response------
-IP - 31.13.80.36 - 59 - noauth
-CNAME - star-mini.c10r.facebook.com - 59 - noauth
+CNAME	star-mini.c10r.facebook.com	3542	noauth
+IP	31.13.80.36	59	noauth
+
+***Additional Section (0 records)***
+
 
 [32mTest 3: www.reddit.com [A query](B[m
 
-Connecting to: /8.8.8.8 [port 53]
-Sending query to: /8.8.8.8 [port 53] (attempt #1)
+DnsClient sending request for www.reddit.com
+Server: /8.8.8.8
+Request type: QUERY_A
 
------- HEADER ------
-ID: 3b2
-QDCOUNT: 1
-ANCOUNT: 5
-NSCOUNT: 0
-ARCOUNT: 0
+***Answer Section (5 records)***
 
------- Response------
-IP - 151.101.1.140 - 29 - noauth
-IP - 151.101.65.140 - 29 - noauth
-IP - 151.101.129.140 - 29 - noauth
-IP - 151.101.193.140 - 29 - noauth
-CNAME - reddit.map.fastly.net - 29 - noauth
+CNAME	reddit.map.fastly.net	250	noauth
+IP	151.101.1.140	29	noauth
+IP	151.101.65.140	29	noauth
+IP	151.101.129.140	29	noauth
+IP	151.101.193.140	29	noauth
+
+***Additional Section (0 records)***
+
 
 [32mTest 4: www.amazon.ca [A query](B[m
 
-Connecting to: /8.8.8.8 [port 53]
-Sending query to: /8.8.8.8 [port 53] (attempt #1)
+DnsClient sending request for www.amazon.ca
+Server: /8.8.8.8
+Request type: QUERY_A
 
------- HEADER ------
-ID: 2215
-QDCOUNT: 1
-ANCOUNT: 4
-NSCOUNT: 0
-ARCOUNT: 0
+***Answer Section (4 records)***
 
------- Response------
-IP - 23.203.100.40 - 19 - noauth
-CNAME - tp.3a3674792-frontier.amazon.ca - 19 - noauth
-CNAME - www.amazon.ca.edgekey.net - 19 - noauth
-CNAME - e15313.e22.akamaiedge.net - 19 - noauth
+CNAME	tp.3a3674792-frontier.amazon.ca	605	noauth
+CNAME	www.amazon.ca.edgekey.net	59	noauth
+CNAME	e15313.e22.akamaiedge.net	57	noauth
+IP	23.74.9.116	19	noauth
+
+***Additional Section (0 records)***
+
 
 [32mTest 5: www.instagram.com [A query](B[m
 
-Connecting to: /8.8.8.8 [port 53]
-Sending query to: /8.8.8.8 [port 53] (attempt #1)
+DnsClient sending request for www.instagram.com
+Server: /8.8.8.8
+Request type: QUERY_A
 
------- HEADER ------
-ID: 3bff
-QDCOUNT: 1
-ANCOUNT: 2
-NSCOUNT: 0
-ARCOUNT: 0
+***Answer Section (2 records)***
 
------- Response------
-IP - 31.13.80.174 - 59 - noauth
-CNAME - z-p42-instagram.c10r.facebook.com - 59 - noauth
+CNAME	z-p42-instagram.c10r.facebook.com	3599	noauth
+IP	31.13.80.174	59	noauth
+
+***Additional Section (0 records)***
+
 
 [32mTest 6: www.linkedin.com [A query](B[m
 
-Connecting to: /8.8.8.8 [port 53]
-Sending query to: /8.8.8.8 [port 53] (attempt #1)
+DnsClient sending request for www.linkedin.com
+Server: /8.8.8.8
+Request type: QUERY_A
 
------- HEADER ------
-ID: 43e8
-QDCOUNT: 1
-ANCOUNT: 4
-NSCOUNT: 0
-ARCOUNT: 0
+***Answer Section (4 records)***
 
------- Response------
-IP - 108.174.10.10 - 13186 - noauth
-CNAME - www-src.linkedin.com - 13186 - noauth
-CNAME - 2-01-2c3e-003c.cdx.cedexis.net - 13186 - noauth
-CNAME - any-na.www.linkedin.com - 13186 - noauth
+CNAME	www-src.linkedin.com	299	noauth
+CNAME	2-01-2c3e-003c.cdx.cedexis.net	299	noauth
+CNAME	any-na.www.linkedin.com	299	noauth
+IP	108.174.10.10	558	noauth
+
+***Additional Section (0 records)***
+
 
 [32mTest 7: www.microsoft.com [A query](B[m
 
-Connecting to: /8.8.8.8 [port 53]
-Sending query to: /8.8.8.8 [port 53] (attempt #1)
+DnsClient sending request for www.microsoft.com
+Server: /8.8.8.8
+Request type: QUERY_A
 
------- HEADER ------
-ID: 5e31
-QDCOUNT: 1
-ANCOUNT: 4
-NSCOUNT: 0
-ARCOUNT: 0
+***Answer Section (4 records)***
 
------- Response------
-IP - 72.247.170.32 - 19 - noauth
-CNAME - www.microsoft.com-c-3.edgekey.net - 19 - noauth
-CNAME - www.microsoft.com-c-3.edgekey.net.globalredir.akadns.net - 19 - noauth
-CNAME - e13678.dspb.akamaiedge.net - 19 - noauth
+CNAME	www.microsoft.com-c-3.edgekey.net	2920	noauth
+CNAME	www.microsoft.com-c-3.edgekey.net.globalredir.akadns.net	5631	noauth
+CNAME	e13678.dspb.akamaiedge.net	809	noauth
+IP	23.74.10.28	19	noauth
+
+***Additional Section (0 records)***
+
+
 ================ MX type queries ===============
 
 [32mTest 8: mail.mcgill.ca [MX query](B[m
 
-Connecting to: /8.8.8.8 [port 53]
-Sending query to: /8.8.8.8 [port 53] (attempt #1)
+DnsClient sending request for mail.mcgill.ca
+Server: /8.8.8.8
+Request type: QUERY_MX
 
------- HEADER ------
-ID: 331
-QDCOUNT: 1
-ANCOUNT: 1
-NSCOUNT: 0
-ARCOUNT: 0
+***Answer Section (1 records)***
 
------- Response------
-MX - mail-mcgill-ca.mail.protection.outlook.com - 10 - 208 - noauth
+MX	mail-mcgill-ca.mail.protection.outlook.com	10	299	noauth
+
+***Additional Section (0 records)***
+
 
 [32mTest 9: gmail.com [MX query](B[m
 
-Connecting to: /8.8.8.8 [port 53]
-Sending query to: /8.8.8.8 [port 53] (attempt #1)
+DnsClient sending request for gmail.com
+Server: /8.8.8.8
+Request type: QUERY_MX
 
------- HEADER ------
-ID: d0fc
-QDCOUNT: 1
-ANCOUNT: 5
-NSCOUNT: 0
-ARCOUNT: 0
+***Answer Section (5 records)***
 
------- Response------
-MX - alt2.gmail-smtp-in.l.google.com - 20 - 3518 - noauth
-MX - alt4.gmail-smtp-in.l.google.com - 40 - 3518 - noauth
-MX - alt1.gmail-smtp-in.l.google.com - 10 - 3518 - noauth
-MX - gmail-smtp-in.l.google.com - 5 - 3518 - noauth
-MX - alt3.gmail-smtp-in.l.google.com - 30 - 3518 - noauth
+MX	alt4.gmail-smtp-in.l.google.com	40	2489	noauth
+MX	alt1.gmail-smtp-in.l.google.com	10	2489	noauth
+MX	alt3.gmail-smtp-in.l.google.com	30	2489	noauth
+MX	alt2.gmail-smtp-in.l.google.com	20	2489	noauth
+MX	gmail-smtp-in.l.google.com	5	2489	noauth
+
+***Additional Section (0 records)***
+
 
 [32mTest 10: hotmail.com [MX query](B[m
 
-Connecting to: /8.8.8.8 [port 53]
-Sending query to: /8.8.8.8 [port 53] (attempt #1)
+DnsClient sending request for hotmail.com
+Server: /8.8.8.8
+Request type: QUERY_MX
 
------- HEADER ------
-ID: 4254
-QDCOUNT: 1
-ANCOUNT: 1
-NSCOUNT: 0
-ARCOUNT: 0
+***Answer Section (1 records)***
 
------- Response------
-MX - hotmail-com.olc.protection.outlook.com - 2 - 484 - noauth
+MX	hotmail-com.olc.protection.outlook.com	2	3349	noauth
+
+***Additional Section (0 records)***
+
+
 ================ NS type queries ===============
 
 [32mTest 11: mcgill.ca [NS query](B[m
 
-Connecting to: /8.8.8.8 [port 53]
-Sending query to: /8.8.8.8 [port 53] (attempt #1)
+DnsClient sending request for mcgill.ca
+Server: /8.8.8.8
+Request type: QUERY_NS
 
------- HEADER ------
-ID: 9f3b
-QDCOUNT: 1
-ANCOUNT: 2
-NSCOUNT: 0
-ARCOUNT: 0
+***Answer Section (2 records)***
 
------- Response------
-NS - pens2.mcgill.ca - 1556 - noauth
-NS - pens1.mcgill.ca - 1556 - noauth
+NS	pens1.mcgill.ca	3599	noauth
+NS	pens2.mcgill.ca	3599	noauth
 
-[32mTest 12: google.ca [NS query](B[m
+***Additional Section (0 records)***
 
-Connecting to: /8.8.8.8 [port 53]
-Sending query to: /8.8.8.8 [port 53] (attempt #1)
 
------- HEADER ------
-ID: b103
-QDCOUNT: 1
-ANCOUNT: 4
-NSCOUNT: 0
-ARCOUNT: 0
+[32mTest 12: google.com [NS query](B[m
 
------- Response------
-NS - ns3.google.com - 13485 - noauth
-NS - ns2.google.com - 13485 - noauth
-NS - ns4.google.com - 13485 - noauth
-NS - ns1.google.com - 13485 - noauth
+DnsClient sending request for google.com
+Server: /8.8.8.8
+Request type: QUERY_NS
+
+***Answer Section (4 records)***
+
+NS	ns3.google.com	19392	noauth
+NS	ns1.google.com	19392	noauth
+NS	ns2.google.com	19392	noauth
+NS	ns4.google.com	19392	noauth
+
+***Additional Section (0 records)***
+
+
+[32mTest 13: google.ca [NS query](B[m
+
+DnsClient sending request for google.ca
+Server: /8.8.8.8
+Request type: QUERY_NS
+
+***Answer Section (4 records)***
+
+NS	ns2.google.com	11649	noauth
+NS	ns1.google.com	11649	noauth
+NS	ns3.google.com	11649	noauth
+NS	ns4.google.com	11649	noauth
+
+***Additional Section (0 records)***
+
