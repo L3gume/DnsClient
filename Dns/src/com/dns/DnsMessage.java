@@ -234,6 +234,7 @@ public class DnsMessage {
                     System.err.format(
                             "ERROR\tUnexpected null termination while parsing label: %s\n",
                             strBuild.toString());
+                    return "unparsed label";
                 }
                 strBuild.append((char)buf);
             }
