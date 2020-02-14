@@ -5,11 +5,11 @@
 DnsClient sending request for www.mcgill.ca
 Server: /132.206.85.18
 Request type: QUERY_A
-Response received after 0.14116 seconds (0 retries)
+Response received after 0.03579 seconds (0 retries)
 
 ***Answer Section (1 records)***
 
-IP	132.216.177.160	708	noauth
+IP	132.216.177.160	625	noauth
 
 ***Additional Section (0 records)***
 
@@ -19,12 +19,12 @@ IP	132.216.177.160	708	noauth
 DnsClient sending request for www.facebook.com
 Server: /132.206.85.18
 Request type: QUERY_A
-Response received after 0.14953 seconds (0 retries)
+Response received after 0.04021 seconds (0 retries)
 
 ***Answer Section (2 records)***
 
-CNAME	star-mini.c10r.facebook.com	918	noauth
-IP	31.13.80.36	12	noauth
+CNAME	star-mini.c10r.facebook.com	1773	noauth
+IP	31.13.80.36	16	noauth
 
 ***Additional Section (0 records)***
 
@@ -34,45 +34,32 @@ IP	31.13.80.36	12	noauth
 DnsClient sending request for www.reddit.com
 Server: /132.206.85.18
 Request type: QUERY_A
-ERROR	Socket timed out while waiting for response: Receive timed out
-DnsClient sending request for www.reddit.com
-Server: /132.206.85.18
-Request type: QUERY_A
-ERROR	Socket timed out while waiting for response: Receive timed out
-DnsClient sending request for www.reddit.com
-Server: /132.206.85.18
-Request type: QUERY_A
-ERROR	Socket timed out while waiting for response: Receive timed out
-DnsClient sending request for www.reddit.com
-Server: /132.206.85.18
-Request type: QUERY_A
-ERROR	Socket timed out while waiting for response: Receive timed out
-DnsClient sending request for www.reddit.com
-Server: /132.206.85.18
-Request type: QUERY_A
-ERROR	Socket timed out while waiting for response: Receive timed out
-DnsClient sending request for www.reddit.com
-Server: /132.206.85.18
-Request type: QUERY_A
-ERROR	Socket timed out while waiting for response: Receive timed out
-DnsClient sending request for www.reddit.com
-Server: /132.206.85.18
-Request type: QUERY_A
-Response received after 12.07447 seconds (6 retries)
-ERROR	Server failure: internal problem in the server made it unable to process the query.
+Response received after 0.03624 seconds (0 retries)
+
+***Answer Section (2 records)***
+
+CNAME	reddit.map.fastly.net	30	noauth
+IP	151.101.145.140	28	noauth
+
+***Additional Section (0 records)***
+
 
 [32mTest 4: www.amazon.ca [A query](B[m
 
 DnsClient sending request for www.amazon.ca
 Server: /132.206.85.18
 Request type: QUERY_A
-Response received after 0.07285 seconds (0 retries)
+ERROR	Socket timed out while waiting for response: Receive timed out
+DnsClient sending request for www.amazon.ca
+Server: /132.206.85.18
+Request type: QUERY_A
+Response received after 2.05131 seconds (1 retries)
 
 ***Answer Section (3 records)***
 
-CNAME	tp.3a3674792-frontier.amazon.ca	959	noauth
-CNAME	djz1tax43w9ei.cloudfront.net	33	noauth
-IP	13.225.197.232	33	noauth
+CNAME	tp.3a3674792-frontier.amazon.ca	319	noauth
+CNAME	djz1tax43w9ei.cloudfront.net	45	noauth
+IP	13.225.229.226	45	noauth
 
 ***Additional Section (0 records)***
 
@@ -82,12 +69,12 @@ IP	13.225.197.232	33	noauth
 DnsClient sending request for www.instagram.com
 Server: /132.206.85.18
 Request type: QUERY_A
-Response received after 0.07402 seconds (0 retries)
+Response received after 0.03766 seconds (0 retries)
 
 ***Answer Section (2 records)***
 
-CNAME	z-p42-instagram.c10r.facebook.com	2929	noauth
-IP	31.13.80.174	57	noauth
+CNAME	z-p42-instagram.c10r.facebook.com	388	noauth
+IP	31.13.80.174	31	noauth
 
 ***Additional Section (0 records)***
 
@@ -97,14 +84,14 @@ IP	31.13.80.174	57	noauth
 DnsClient sending request for www.linkedin.com
 Server: /132.206.85.18
 Request type: QUERY_A
-Response received after 0.06974 seconds (0 retries)
+Response received after 0.04369 seconds (0 retries)
 
 ***Answer Section (4 records)***
 
-CNAME	www-src.linkedin.com	254	noauth
-CNAME	2-01-2c3e-003c.cdx.cedexis.net	254	noauth
-CNAME	any-na.www.linkedin.com	254	noauth
-IP	108.174.10.10	73520	noauth
+CNAME	www-src.linkedin.com	272	noauth
+CNAME	2-01-2c3e-003c.cdx.cedexis.net	160	noauth
+CNAME	any-na.www.linkedin.com	160	noauth
+IP	108.174.10.10	71799	noauth
 
 ***Additional Section (0 records)***
 
@@ -114,14 +101,14 @@ IP	108.174.10.10	73520	noauth
 DnsClient sending request for www.microsoft.com
 Server: /132.206.85.18
 Request type: QUERY_A
-Response received after 0.06698 seconds (0 retries)
+Response received after 0.04153 seconds (0 retries)
 
 ***Answer Section (4 records)***
 
-CNAME	www.microsoft.com-c-3.edgekey.net	2627	noauth
-CNAME	www.microsoft.com-c-3.edgekey.net.globalredir.akadns.net	6219	noauth
-CNAME	e13678.dspb.akamaiedge.net	828	noauth
-IP	72.247.170.32	4	noauth
+CNAME	www.microsoft.com-c-3.edgekey.net	1030	noauth
+CNAME	www.microsoft.com-c-3.edgekey.net.globalredir.akadns.net	833	noauth
+CNAME	e13678.dspb.akamaiedge.net	527	noauth
+IP	104.123.194.9	7	noauth
 
 ***Additional Section (0 records)***
 
@@ -153,7 +140,7 @@ ERROR	Socket timed out while waiting for response: Receive timed out
 DnsClient sending request for mail.mcgill.ca
 Server: /132.206.85.18
 Request type: QUERY_MX
-Response received after 11.37672 seconds (5 retries)
+Response received after 11.98144 seconds (5 retries)
 ERROR	Server failure: internal problem in the server made it unable to process the query.
 
 [32mTest 9: gmail.com [MX query](B[m
@@ -185,7 +172,7 @@ ERROR	Socket timed out while waiting for response: Receive timed out
 DnsClient sending request for gmail.com
 Server: /132.206.85.18
 Request type: QUERY_MX
-Response received after 12.28333 seconds (6 retries)
+Response received after 12.17875 seconds (6 retries)
 ERROR	Server failure: internal problem in the server made it unable to process the query.
 
 [32mTest 10: hotmail.com [MX query](B[m
@@ -217,7 +204,7 @@ ERROR	Socket timed out while waiting for response: Receive timed out
 DnsClient sending request for hotmail.com
 Server: /132.206.85.18
 Request type: QUERY_MX
-Response received after 12.21585 seconds (6 retries)
+Response received after 12.27536 seconds (6 retries)
 ERROR	Server failure: internal problem in the server made it unable to process the query.
 
 ================ NS type queries ===============
@@ -227,38 +214,42 @@ ERROR	Server failure: internal problem in the server made it unable to process t
 DnsClient sending request for mcgill.ca
 Server: /132.206.85.18
 Request type: QUERY_NS
-Response received after 0.08302 seconds (0 retries)
+Response received after 0.03908 seconds (0 retries)
 
 ***Answer Section (3 records)***
 
-NS	pirns2.mcgill.ca	592	noauth
-NS	pirns3.mcgill.ca	592	noauth
-NS	pirns1.mcgill.ca	592	noauth
+NS	pirns3.mcgill.ca	595	noauth
+NS	pirns1.mcgill.ca	595	noauth
+NS	pirns2.mcgill.ca	595	noauth
 
 ***Additional Section (3 records)***
 
-IP	132.216.44.21	523	noauth
-IP	132.206.25.21	468	noauth
-IP	132.206.44.21	48	noauth
+IP	132.206.25.21	32	noauth
+IP	132.206.44.21	546	noauth
+IP	132.216.44.21	546	noauth
 
 [32mTest 12: google.com [NS query](B[m
 
 DnsClient sending request for google.com
 Server: /132.206.85.18
 Request type: QUERY_NS
-Response received after 0.07374 seconds (0 retries)
+ERROR	Socket timed out while waiting for response: Receive timed out
+DnsClient sending request for google.com
+Server: /132.206.85.18
+Request type: QUERY_NS
+Response received after 2.05870 seconds (1 retries)
 
 ***Answer Section (4 records)***
 
-NS	ns3.google.com	245423	noauth
-NS	ns1.google.com	245423	noauth
-NS	ns4.google.com	245423	noauth
-NS	ns2.google.com	245423	noauth
+NS	ns4.google.com	157221	noauth
+NS	ns2.google.com	157221	noauth
+NS	ns3.google.com	157221	noauth
+NS	ns1.google.com	157221	noauth
 
 ***Additional Section (8 records)***
 
-IP	216.239.36.10	72657	noauth
-IP	32.1.72.96	73081	noauth
+IP	216.239.38.10	70862	noauth
+IP	32.1.72.96	74042	noauth
 ERROR	Unexpected null termination while parsing label: 
 ERROR	Unexpected response class: 0. Should be internet address (1).
 [32mTest 13: google.ca [NS query](B[m
@@ -266,18 +257,18 @@ ERROR	Unexpected response class: 0. Should be internet address (1).
 DnsClient sending request for google.ca
 Server: /132.206.85.18
 Request type: QUERY_NS
-Response received after 0.06245 seconds (0 retries)
+Response received after 0.03593 seconds (0 retries)
 
 ***Answer Section (4 records)***
 
-NS	ns2.google.com	73872	noauth
-NS	ns4.google.com	73872	noauth
-NS	ns3.google.com	73872	noauth
-NS	ns1.google.com	73872	noauth
+NS	ns2.google.com	71780	noauth
+NS	ns3.google.com	71780	noauth
+NS	ns4.google.com	71780	noauth
+NS	ns1.google.com	71780	noauth
 
 ***Additional Section (8 records)***
 
-IP	216.239.34.10	72657	noauth
-IP	32.1.72.96	75595	noauth
+IP	216.239.34.10	70862	noauth
+IP	32.1.72.96	73796	noauth
 ERROR	Unexpected null termination while parsing label: 
 ERROR	Unexpected response class: 0. Should be internet address (1).

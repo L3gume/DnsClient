@@ -2,7 +2,7 @@
 [32mTest 1: request timeout (1s)(B[m
 
 DnsClient sending request for www.mcgill.ca
-Server: /8.8.8.8
+Server: /132.206.85.18
 Request type: QUERY_A
 ERROR	Socket timed out while waiting for response: Receive timed out
 ERROR	Failed to contact name server. Exiting...
@@ -10,7 +10,7 @@ ERROR	Failed to contact name server. Exiting...
 [32mTest 2: request timeout (10s)(B[m
 
 DnsClient sending request for www.mcgill.ca
-Server: /8.8.8.8
+Server: /132.206.85.18
 Request type: QUERY_A
 ERROR	Socket timed out while waiting for response: Receive timed out
 ERROR	Failed to contact name server. Exiting...
@@ -18,23 +18,23 @@ ERROR	Failed to contact name server. Exiting...
 [32mTest 3: request timeout (1s) + 5 tries(B[m
 
 DnsClient sending request for www.mcgill.ca
-Server: /8.8.8.8
+Server: /132.206.85.18
 Request type: QUERY_A
 ERROR	Socket timed out while waiting for response: Receive timed out
 DnsClient sending request for www.mcgill.ca
-Server: /8.8.8.8
+Server: /132.206.85.18
 Request type: QUERY_A
 ERROR	Socket timed out while waiting for response: Receive timed out
 DnsClient sending request for www.mcgill.ca
-Server: /8.8.8.8
+Server: /132.206.85.18
 Request type: QUERY_A
 ERROR	Socket timed out while waiting for response: Receive timed out
 DnsClient sending request for www.mcgill.ca
-Server: /8.8.8.8
+Server: /132.206.85.18
 Request type: QUERY_A
 ERROR	Socket timed out while waiting for response: Receive timed out
 DnsClient sending request for www.mcgill.ca
-Server: /8.8.8.8
+Server: /132.206.85.18
 Request type: QUERY_A
 ERROR	Socket timed out while waiting for response: Receive timed out
 ERROR	Failed to contact name server. Exiting...
